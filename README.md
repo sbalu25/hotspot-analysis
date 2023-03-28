@@ -1,28 +1,16 @@
-# CSE511-Project-Hotspot-Analysis-Template
+# Hotspot analysis
 #### Version history
-v1.1, Nov 16, Fix a bug in "Entrace.scala"
-v1.0, Nov 13, Initial version
-
-
-## Requirement
-
-In this phase, you are required to do spatial hot spot analysis. In particular, you need to complete two different hot spot analysis tasks 
 
 
 ### Hot zone analysis
-This task will needs to perform a range join operation on a rectangle datasets and a point dataset. For each rectangle, the number of points located within the rectangle will be obtained. The hotter rectangle means that it include more points. So this task is to calculate the hotness of all the rectangles. 
+Project perform a range join operation on a rectangle datasets and a point dataset. For each rectangle, the number of points located within the rectangle will be obtained. The hotter rectangle means that it include more points. So this project is to calculate the hotness of all the rectangles. 
 
 ### Hot cell analysis
 
 #### Description
-This task will focus on applying spatial statistics to spatio-temporal big data in order to identify statistically significant spatial hot spots using Apache Spark. The topic of this task is from ACM SIGSPATIAL GISCUP 2016.
+The project focus on applying spatial statistics to spatio-temporal big data in order to identify statistically significant spatial hot spots using Apache Spark.
 
-The Problem Definition page is here: [http://sigspatial2016.sigspatial.org/giscup2016/problem](http://sigspatial2016.sigspatial.org/giscup2016/problem) 
-
-The Submit Format page is here: [http://sigspatial2016.sigspatial.org/giscup2016/submit](http://sigspatial2016.sigspatial.org/giscup2016/submit)
-
-#### Special requirement (different from GIS CUP)
-As stated in the Problem Definition page, in this task, you are asked to implement a Spark program to calculate the Getis-Ord statistic of NYC Taxi Trip datasets. We call it "**Hot cell analysis**"
+The task is to implement a Spark program to calculate the Getis-Ord statistic of NYC Taxi Trip datasets. We call it "**Hot cell analysis**"
 
 To reduce the computation power needï¼Œwe made the following changes:
 
@@ -31,7 +19,6 @@ To reduce the computation power needï¼Œwe made the following changes:
 3. You should use 1 day as the Time Step size. The first day of a month is step 1. Every month has 31 days.
 4. You only need to consider Pick-up Location.
 5. We don't use Jaccard similarity to check your answer.
-However, you don't need to worry about how to decide the cell coordinates because the code template generated cell coordinates. You just need to write the rest of the task.
 
 ## Coding template specification
 
@@ -91,24 +78,6 @@ The coordinates of top 50 hotest cells sorted by their G score in a descending o
 An example input and answer are put in "testcase" folder of the coding template
 
 
-## Where you need to change
-DO NOT DELETE any existing code in the coding template unless you see this "YOU NEED TO CHANGE THIS PART"
-
-### Hot zone analysis
-
-In the code template,
-
-1. You need to change "**HotzoneAnalysis.scala** and **HotzoneUtils.scala**".
-2. The coding template has loaded the data and wrote the first step, range join query, for you. Please finish the rest of the task.
-3. The output DataFrame should be sorted by you according to "rectangle" string.
-
-### Hot cell analysis
-In the code template,
-
-1. You need to change "**HotcellAnalysis.scala** and **HotcellUtils.scala**".
-2. The coding template has loaded the data and decided the cell coordinate, x, y, z and their min and max. Please finish the rest of the task.
-3. The output DataFrame should be sorted by you according to G-score. The coding template will take the first 50 to output. DO NOT OUTPUT G-score.
-
 
 ## Tips (Optional)
 This section is same with that in the Project SparkSQl Instructions.
@@ -123,10 +92,3 @@ If you are using the Scala template
 4. Run your code in IDE
 5. **You must revert Step 3 and 4 above and recompile your code before use spark-submit!!!**
 
-### How to submit your code to Spark
-If you are using the Scala template
-
-1. Go to project root folder
-2. Run ```sbt clean assembly```. You may need to install sbt in order to run this command.
-3. Find the packaged jar in "./target/scala-2.11/CSE512-Project-Hotspot-Analysis-Template-assembly-0.1.0.jar"
-4. Submit the jar to Spark using Spark command "./bin/spark-submit". A pseudo code example: ```./bin/spark-submit ~/GitHub/CSE512-Project-Hotspot-Analysis-Template/target/scala-2.11/CSE512-Project-Hotspot-Analysis-Template-assembly-0.1.0.jar test/output hotzoneanalysis src/resources/point-hotzone.csv src/resources/zone-hotzone.csv hotcellanalysis src/resources/yellow_tripdata_2009-01_point.csv```
